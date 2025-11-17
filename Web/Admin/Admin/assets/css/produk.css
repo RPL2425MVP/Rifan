@@ -1,0 +1,66 @@
+.product-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.product-card {
+  background: white;
+  border-radius: 10px;
+  padding: 12px;
+  position: relative;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: 0.2s;
+}
+
+.product-card:hover {
+  transform: scale(1.03);
+}
+
+.product-image {
+  width: 100%;
+  aspect-ratio: 1/1;
+  background: black; /* ganti dengan gambar misal: background:url(img.jpg) */
+  border-radius: 8px;
+}
+
+.product-name {
+  margin: 8px 0 2px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.product-price {
+  font-size: 14px;
+  color: #444;
+}
+
+.discount {
+  background: #47d1ff;
+  color: white;
+  font-size: 13px;
+  font-weight: bold;
+  padding: 3px 8px;
+  border-radius: 6px;
+  position: absolute;
+  top: 8px;
+  left: 8px;
+}
+
+.btn-crud {
+  width: 100%;
+  padding: 8px 12px;
+  margin-top: 5px;
+  border: none;
+  border-radius: 6px;
+  background: #00b3ff;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-crud:hover {
+  background: #008cc2;
+}
