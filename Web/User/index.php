@@ -6,6 +6,8 @@
     <link href="Assets/CSS/baseStyle.css" rel="stylesheet" type="text/css">
     <link href="Assets/CSS/home.css" rel="stylesheet" type="text/css">
     <link href="Assets/CSS/auth.css" rel="stylesheet" type="text/css">
+    <link href="Assets/bcss/bootstrap.min.css" rel="stylesheet" type="text/css">
+
     <title>Index</title>
 </head>
 <body>
@@ -59,4 +61,5 @@
 
 </body>
 <script src="https://kit.fontawesome.com/0d4d4af315.js" crossorigin="anonymous"></script>
+<script src="Assets/js/bootstrap.min.js"></script>
 </html>

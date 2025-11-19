@@ -1,3 +1,7 @@
+<?php
+include 'Function/function.php';
+$produkNew = getAllData("data_produk", "");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,47 +11,65 @@
 </head>
 <body>
 
-    <div class="page-container">
-    <section class="hero-slider">
-        <div class="slider-content">
-            <button class="slider-arrow left-arrow">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
-            </button>
-            <img src="Assets/Images/slide2.jpg" alt="" class="hero-slider">
-            <button class="slider-arrow right-arrow">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-            </button>
-        </div>
-    </section>
+    <div id="carouselExample" class="carousel slide">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="Assets/Images/slide1.jpg" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="Assets/Images/slide2.jpg" class="d-block w-100" alt="...">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+    <h2 class="section-title">Produk Terbaru</h2>
+    <div class="product-container">
+        
+            
 
-    <section class="product-section">
-        <h2 class="section-title">Produk Terbaru</h2>
-        <div class="product-grid grid-4-cols">
-            <div class="product-card">
-                <div class="badge">Sale</div>
-                <div class="product-image"></div>
-                <div class="product-info">
-                    <p class="product-name">Nama Produk 1</p>
-                    <p class="product-description">Ini barang apa? yo ndak gdhgh asdhca hjsdadghjh</p>
-                    <p class="product-price">Rp. 0 <span>Rp. 0</span></p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="product-section">
-        <h2 class="section-title">Produk Terlaris</h2>
-        <div class="product-grid grid-4-cols">
-            <div class="product-card">
-                <div class="badge">Sale</div>
-                <div class="product-image"></div>
-                <div class="product-info">
-                    <p class="product-name">Nama Produk 1</p>
-                    <p class="product-price">Rp. 0 <span>Rp. 0</span></p>
-                </div>
-            </div>
-        </div>
-    </section>
+            
+    <?php
+    foreach ($produkNew as $a => $p) {
+    $foto = $conn->query("SELECT foto FROM foto_produk WHERE id_produk='{$p['id_produk']}' LIMIT 1");
+    $f = $foto->fetch_assoc();
+    $gambar = $f ? $f['foto'] : 'noimage.png'; // jika tidak ada foto
+    echo "
+    <a style='text-decoration:none; color:black' href='?pages=dproduk&id={$p['id_produk']}''>
+    <div class='product-card'>
+    <div><img src='../Admin/Admin/assets/Images/produk/$gambar' class='product-image'>
+    </div>
+    <h3 class='product-name'>{$p['nama_produk']}</h3>
+    <p class='product-price'>Rp.{$p['harga']}</p>
+    </div>
+    </a>
+    ";
+    } 
+?>
+    </div>
+<h2 class="section-title">Produk Terlaris</h2>
+<div class="product-container">
+        
+        <?php
+    foreach ($produkNew as $a => $p) {
+    $foto = $conn->query("SELECT foto FROM foto_produk WHERE id_produk='{$p['id_produk']}' LIMIT 1");
+    $f = $foto->fetch_assoc();
+    $gambar = $f ? $f['foto'] : 'noimage.png'; // jika tidak ada foto
+    echo "<div class='product-card'>
+    <div><img src='../Admin/Admin/assets/Images/produk/$gambar' class='product-image'>
+    </div>
+    <h3 class='product-name'>{$p['nama_produk']}</h3>
+    <p class='product-price'>Rp.{$p['harga']}</p>
+    </div>";
+    } 
+?>
+    </div>
 
     <section class="placeholder-section">
         <div class="placeholder-grid">

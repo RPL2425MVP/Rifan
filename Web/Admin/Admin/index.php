@@ -492,16 +492,24 @@
                                  <span class="nav-text"> Dashboard </span>
                             </a>
                        </li>
-
-                       <li class="nav-item">
-                            <a class="nav-link" href="?pages=produk">
-                                 <span class="nav-icon">
-                                      <iconify-icon icon="solar:widget-5-bold-duotone"></iconify-icon>
-                                 </span>
-                                 <span class="nav-text"> Produk </span>
-                            </a>
+                         <li class="nav-item">
+                         <a class="nav-link menu-arrow" href="#sidebarTables" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarTables">
+                              <span class="nav-icon">
+                                   <iconify-icon icon="solar:tuning-2-bold-duotone"></iconify-icon>
+                              </span>
+                              <span class="nav-text"> Produk </span>
+                         </a>
+                         <div class="collapse" id="sidebarTables">
+                              <ul class="nav sub-navbar-nav">
+                                   <li class="sub-nav-item">
+                                        <a class="sub-nav-link" href="?pages=produk">Produk</a>
+                                   </li>
+                                   <li class="sub-nav-item">
+                                        <a class="sub-nav-link" href="?pages=kategori">Kategori</a>
+                                   </li>
+                              </ul>
+                         </div>
                        </li>
-
                        <li class="nav-item">
                             <a class="nav-link" href="Dashbo?pages">
                                  <span class="nav-icon">
