@@ -16,7 +16,7 @@
 
         <ul class="nav-links">
             <li><a href="?pages=home">Home</a></li>
-            <li><a href="#">Store</a></li>
+            <li><a href="?pages=store">Store</a></li>
         </ul>
 
         <div class="icons">

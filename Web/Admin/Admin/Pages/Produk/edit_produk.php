@@ -1,6 +1,6 @@
 <?php
 include 'Function/function.php';
-$isiidf= autonumber("foto_produk", "id_foto", 0, "F00");
+$isiidf= autonumber("foto_produk", "id_foto", 3, "F");
 
 $id = $_GET['id'];
 $p = getDataById("data_produk", ['id_produk' => $id]);

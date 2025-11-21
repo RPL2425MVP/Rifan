@@ -15,6 +15,70 @@ function query($query){
     return $kotak;
 }
 
+function registerUser($data) {
+    global $conn;
+
+    $id_user  = uniqid();
+    $nama     = $data['nama'];
+    $email    = $data['email'];
+    $password = password_hash($data['password'], PASSWORD_DEFAULT);
+
+    // Cek email sudah ada atau belum
+    $cek = mysqli_query($conn, "SELECT * FROM account_user WHERE email='$email'");
+    if (mysqli_num_rows($cek) > 0) {
+        return ["status" => false, "msg" => "Email sudah terdaftar!"];
+    }
+
+    // Insert hanya nama, email, password
+    $query = "INSERT INTO account_user 
+        (id_user, nama, email, password, create_at) 
+        VALUES 
+        ('$id_user', '$nama', '$email', '$password', NOW())";
+
+    if (mysqli_query($conn, $query)) {
+        return ["status" => true];
+    } else {
+        return ["status" => false, "msg" => mysqli_error($conn)];
+    }
+}
+
+
+function login($email, $password) {
+    global $conn;
+
+    // === CEK ADMIN ===
+    $admin = mysqli_query($conn, "SELECT * FROM account_admin WHERE email='$email'");
+    if (mysqli_num_rows($admin) === 1) {
+        $row = mysqli_fetch_assoc($admin);
+
+        if (password_verify($password, $row['password'])) {
+            $_SESSION['login'] = true;
+            $_SESSION['role']  = 'admin';
+            $_SESSION['id']    = $row['id_admin'];
+            $_SESSION['nama']  = $row['nama'];
+
+            return ["status" => true, "role" => "admin"];
+        }
+    }
+
+    // === CEK USER ===
+    $user = mysqli_query($conn, "SELECT * FROM account_user WHERE email='$email'");
+    if (mysqli_num_rows($user) === 1) {
+        $row = mysqli_fetch_assoc($user);
+
+        if (password_verify($password, $row['password'])) {
+            $_SESSION['login'] = true;
+            $_SESSION['role']  = 'user';
+            $_SESSION['id']    = $row['id_user'];
+            $_SESSION['nama']  = $row['nama'];
+
+            return ["status" => true, "role" => "user"];
+        }
+    }
+
+    return ["status" => false, "msg" => "Email atau password salah!"];
+}
+
 function autonumber($tabel, $kolom, $lebar = 0, $awalan){
     global $conn;
     // proses auto number 
@@ -99,5 +163,26 @@ move_uploaded_file($tmp, "$folder/$newName");
 $result[] = $newName;
 }
 return $result;
+}
+
+function registerAdmin($data) {
+    global $conn;
+
+    $id_user  = uniqid();
+    $nama     = $data['nama'];
+    $email    = $data['email'];
+    $password = password_hash($data['password'], PASSWORD_DEFAULT);
+
+    // Insert hanya nama, email, password
+    $query = "INSERT INTO account_admin 
+        (id_admin, nama, email, password, created_at) 
+        VALUES 
+        ('$id_user', '$nama', '$email', '$password', NOW())";
+
+    if (mysqli_query($conn, $query)) {
+        return ["status" => true];
+    } else {
+        return ["status" => false, "msg" => mysqli_error($conn)];
+    }
 }
 ?>

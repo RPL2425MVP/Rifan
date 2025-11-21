@@ -3,18 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta nam="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
+    <title>Sign In</title>
     <link href="assets/css/auth.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
  <div class="container">
     <div class="auth-card">
-    <h2>Register</h2>
+    <h2>Sign In</h2>
     <form action="" method="POST">
-        <div>
-            <label class="labelauth" for="input">Nama</label>
-            <input class="inputauth" type="text" name="nama" placeholder="Masukkan Nama">
-        </div>
         <div>
             <label class="labelauth" for="input">Email</label>
             <input class="inputauth" type="email" name="email" placeholder="Masukkan Email">
@@ -24,12 +20,30 @@
             <input class="inputauth" type="password" name="password" placeholder="Masukkan Password">
         </div>
         <div>
-            <input type="submit" value="Next" class="nextButton">
+            <input type="submit" name="login" value="Next" class="nextButton">
         </div>
     </form>
-    <p class="authp">Sudah punya akun? <a class="aauth" href="?pages=login">Log-In</a></p>
-    <p class="authp">Dengan mendaftar, saya mengakui telah membaca dan menyetujui <a class="aauth" href="">Syarat, Ketentuan dan Kebijakan</a> & <a class="aauth" href="">Kebijakan Privasi</a>.</p>
+    <p class="authp"><a class="aauth" href="login.php">Forgot Password?</a></p>
+    <p class="authp">Belum punya akun? <a class="aauth" href="?pages=register">Register</a>.</p>
     </div>
  </div>
+ <?php
+require 'Function/function.php';
+
+if (isset($_POST['login'])) {
+    $result = login($_POST['email'], $_POST['password']);
+
+    if ($result['status']) {
+        if ($result['role'] == 'admin') {
+            header("Location: ../Admin/Admin/index.php");
+        } else {
+            header("Location: index.php");
+        }
+        exit;
+    } else {
+        echo $result['msg'];
+    }
+}
+?>
 </body>
 </html>

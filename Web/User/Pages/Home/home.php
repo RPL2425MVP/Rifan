@@ -1,6 +1,6 @@
 <?php
 include 'Function/function.php';
-$produkNew = getAllData("data_produk", "");
+$produkNew = getAllData("data_produk", "ORDER BY created_at DESC LIMIT 6");
 ?>
 <!DOCTYPE html>
 <html lang="en">

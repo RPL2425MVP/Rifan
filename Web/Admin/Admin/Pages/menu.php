@@ -18,7 +18,7 @@ switch ($pages) {
         include "Pages/Kategori/kategori.php";
         break;
     default:
-        include "Pages/Dashboard/dashboard.php";
+        include "Pages/Produk/produk.php";
         break;
 }
 ?>

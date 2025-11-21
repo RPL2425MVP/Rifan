@@ -1,7 +1,7 @@
 <?php
 include 'Function/function.php';
-$isiid= autonumber("data_produk", "id_produk", 0, "PRDK00");
-$isiidf= autonumber("foto_produk", "id_foto", 0, "F00");
+$isiid= autonumber("data_produk", "id_produk", 3, "PRDK");
+$isiidf= autonumber("foto_produk", "id_foto", 3, "F");
 $kategori = getAllData("kategori", "ORDER BY nama_kategori ASC");
 
 
